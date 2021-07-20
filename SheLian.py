@@ -36,11 +36,13 @@ def refresh():
     # global refreshCount
     # refreshCount += 1
 
-img = Image.open("./SheLianImg/1.PNG")
-test = pytesseract.image_to_string(img, lang='chi_tra')
 
-def test():
+def test(cnt=20):
+    count = 1
     global refreshCount
+
+    p.click(781, 244)
+
     while 1:
         if refreshCount > 2:
             break
@@ -48,7 +50,7 @@ def test():
         if p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/defence.PNG", confidence=0.8) != None or p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/deliver.PNG", confidence=0.8) != None:
             count = 0
             while 1:
-                print("更改試煉模式! %d" % count)
+                # print("更改試煉模式! %d" % count)
                 changeMode()
                 count += 1
                 if p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/defence.PNG", confidence=0.8) == None and p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/deliver.PNG", confidence=0.8) == None:
@@ -58,14 +60,14 @@ def test():
                     break
         elif p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/dawu.PNG", confidence=0.8) != None:
             while 1:
-                print("更改試煉環境!")
+                # print("更改試煉環境!")
                 changeEnv()
                 if p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/dawu.PNG", confidence=0.8) == None:
                     break
         elif p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/dodgeIncreased.PNG", confidence=1) != None or p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/cantHitGainLife.PNG", confidence=1) != None:
             count = 0
             while 1:
-                print("更改試煉詞綴!")
+                # print("更改試煉詞綴!")
                 changeMod()
                 count += 1
                 if p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/dodgeIncreased.PNG", confidence=0.8) == None and p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/cantHitGainLife.PNG", confidence=0.8) == None:
@@ -76,7 +78,7 @@ def test():
         elif p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/go.PNG", confidence=0.8) != None:
                 x, y = p.locateCenterOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/go.PNG", confidence=0.8)
                 p.click(x, y)
-                print("GOGOGO")
+                # print("GOGOGO")
         elif p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/V.PNG", confidence=0.8) != None or p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/question.PNG", confidence=0.8) != None:
             for i in range(5):
                 t.sleep(0.1)
@@ -85,30 +87,38 @@ def test():
                 if p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/ok.PNG", confidence=0.8) != None:
                     x, y = p.locateCenterOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/ok.PNG", confidence=0.8)
                     p.click(x, y)
-                    print("OK")
+                    # print("OK")
                     break
             while 1:
                 if p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/EndGameGo.PNG", confidence=0.8) != None:
                     x, y = p.locateCenterOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/EndGameGo.PNG", confidence=0.8)
                     p.click(x, y)
-                    print("GOGOGO")
+                    # print("GOGOGO")
+                    break
+
+            while 1:
+                if p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/star.PNG", confidence=0.8) != None:
                     break
             refreshCount = 0
-            print("end step.")
+
+            print("第--%s--場遠古試煉完成." % count)
+            count += 1
             t.sleep(8)
 
         t.sleep(0.2)
+        if count > cnt:
+            break
 
 
 def testGUI():
     while 1:
         t.sleep(0.1)
-        if p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/EndGameGo.PNG", confidence=0.8) != None:
+        if p.locateOnScreen("B:/Python/PythonPrac/GUI/SheLianImg/star.PNG", confidence=0.8) != None:
             print("find it")
         else:
             print("xdont find")
 # testGUI()
-test()
+# test()
 # print(p.position())
 # p.moveTo(1335, 748)
 # refresh()

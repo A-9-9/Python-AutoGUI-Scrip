@@ -95,7 +95,7 @@ def breakGame():
         print("Used time: %s." % (end - start))
         exit()
 
-def startOnThGuaGiFunc():
+def startOnThGuaGiFunc(cnt=30):
     # 如果有200樓標示  startTrail()
     # 沒事就按endGameStep()
     # 死掉  reloadWhileDie()
@@ -135,6 +135,9 @@ def startOnThGuaGiFunc():
             endGameStep()
             time.sleep(3)
 
+        if n < cnt:
+            break
+
 def testGUI():
     for i in range(10):
         time.sleep(0.1)
@@ -150,7 +153,7 @@ def testGUI():
 # print(p.position())
 
 
-startOnThGuaGiFunc()
+# startOnThGuaGiFunc(2)
 # turnOnTheSkill()
 
 # reloadWhileDie()
